@@ -13,6 +13,7 @@
             <th>Code</th>
             <th>Name</th>
             <th>Image</th>
+            <th>Action</th>
         </tr>
     </thead>
 
@@ -24,6 +25,11 @@
                 <td>@walk.Code</td>
                 <td>@walk.Name</td>
                 <td><img src=@walk.RegionImageUrl /></td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Regions" asp-action="Edit" asp-route-id="@walk.Id">Edit</a>
+                    <a class="btn btn-danger" asp-controller="Regions" asp-action="Edit" asp-route-id="@walk.Id">Delete</a>
+                </td>
+               
             </tr>
         }
     </tbody>

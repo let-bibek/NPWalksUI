@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Edit";
+}
+@model NPWalksUI.Models.DTO.RegionDto
+
+<h1 class="text text-center">Edit Region</h1>
+
+@if (Model != null)
+{
+    <form method="post" class="form">
+    <div class="m-2">
+        <label class="input-label">Id</label>
+        <input class="form-control"  type="text" asp-for="Id" readonly />
+    </div>
+    <div class="m-2">
+        <label class="input-label">Code</label>
+        <input class="form-control"  type="text" asp-for="Code" />
+    </div>
+    <div class="m-2">
+        <label class="input-label">Name</label>
+        <input class="form-control" type="text"  asp-for="Name" />
+    </div>
+    <div class="m-2">
+        <label class="input-label">Image Url</label>
+        <input class="form-control" type="text" asp-for="RegionImageUrl" />
+    </div>
+    <div class="m-3">
+        <button class="btn btn-submit btn-primary" type="submit">Save</button>
+        <button class="btn btn-submit btn-danger" type="submit" asp-action="Delete" asp-controller="Regions">Delete</button>
+    </div>
+</form>
+}
