@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Add";
+}
+@model NPWalksUI.Models.AddRegionViewModel
+
+<h1 class="text text-center m-3">Add Regions</h1>
+<form method="post" class="form">
+    <div class="m-2">
+        <label class="input-label">Code</label>
+        <input class="form-control" type="text" asp-for="Code" />
+    </div>
+    <div class="m-2">
+        <label class="input-label">Name</label>
+        <input class="form-control" type="text" asp-for="Name" />
+    </div>
+    <div class="m-2">
+        <label class="input-label">Image Url</label>
+        <input class="form-control" type="text" asp-for="RegionImageUrl" />
+    </div>
+    <div class="m-3">
+        <button class="btn btn-submit btn-primary" type="submit">Save</button>
+    </div>
+</form>

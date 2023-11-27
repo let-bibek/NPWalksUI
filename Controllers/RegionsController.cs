@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NPWalksUI.Models;
 using NPWalksUI.Models.DTO;
 
 namespace NPWalksUI.Controllers
@@ -23,6 +26,7 @@ namespace NPWalksUI.Controllers
         }
 
         // Get all regions from the web api
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             List<RegionDto> response = new List<RegionDto>();
@@ -40,6 +44,41 @@ namespace NPWalksUI.Controllers
             return View(response);
         }
 
+        // Add new region page
+        [HttpGet]
+        [Route("Add")]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        // Add new region to the database
+        [HttpPost]
+        [Route("Add")]
+        public async Task<IActionResult> Add(AddRegionViewModel addRegion)
+        {
+            var client = HttpClient.CreateClient();
+            var httpRequestMessage = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("http://localhost:5282/api/Regions"),
+                Content = new StringContent(JsonSerializer.Serialize(addRegion), Encoding.UTF8, "application/json")
+
+            };
+
+            var httpResponseMessage = await client.SendAsync(httpRequestMessage);
+
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            var response = await httpResponseMessage.Content.ReadFromJsonAsync<RegionDto>();
+
+            if (response != null)
+            {
+                return RedirectToAction("Index", "Regions");
+            }
+
+            return View();
+        }
         // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         // public IActionResult Error()
         // {

@@ -4,6 +4,7 @@
 @model IEnumerable<NPWalksUI.Models.DTO.RegionDto>
 
 <h1 class="text text-center">Response</h1>
+<a asp-controller="Regions" asp-action="Add" class="btn btn-primary m-3">Add New</a>
 
 <table class="table table-bordered">
     <thead>
@@ -18,12 +19,12 @@
     <tbody>
         @foreach (var walk in Model)
         {
-                <tr>
-                    <td>@walk.Id</td>
-                    <td>@walk.Code</td>
-                    <td>@walk.Name</td>
-                    <td><img src=@walk.RegionImageUrl /></td>
-                </tr>
+            <tr>
+                <td>@walk.Id</td>
+                <td>@walk.Code</td>
+                <td>@walk.Name</td>
+                <td><img src=@walk.RegionImageUrl /></td>
+            </tr>
         }
     </tbody>
 </table>
